@@ -1,6 +1,6 @@
 <script>
-import Footer from "../components/Footer.vue";
 import { mapStores } from "pinia";
+import { useWinesStore } from "../stores/wines.js";
 
 export default {
   data() {
@@ -16,19 +16,19 @@ export default {
   },
 
   computed: {
-    ...mapStores(useWineStore),
+    ...mapStores(useWinesStore),
   },
 
   methods: {
-    createNewBook() {
+    createNewWine() {
       //Organize id for book detail page
-      const idLowerCase = this.wine.toLowerCase();
+      const idLowerCase = this.name.toLowerCase();
       const id = idLowerCase.replace(/\s+/g, '-');
 
       //Create book object
       const newWine = {
         id: id,
-        wine: this.wine,
+        name: this.name,
         country: this.country,
         price: this.price,
         description: this.description,
@@ -37,10 +37,12 @@ export default {
       };
 
       //Add to local storage
-      this.wineStore.newWine(newWine);
+      this.winesStore.newWine(newWine);
+      console.log(this.name);
+      
 
       //Empty inputs when new product added to local storage
-      this.wine = "";
+      this.name = "";
       this.country = "";
       this.price = "";
       this.description = "";
@@ -56,7 +58,7 @@ export default {
   },
 
   components: {
-    Footer,
+   
   },
 };
 
@@ -73,14 +75,14 @@ export default {
   <h1 class="title">ADD NEW PRODUCT</h1>
 
   <div class="form">
-    <label for="wine" class="form__label">WINE</label>
+    <label for="name" class="form__label">WINE</label>
     <input
       type="text"
       name="name"
       placeholder="Wine name"
       class="form__input"
-      id="wine"
-      v-model="wine"
+      id="name"
+      v-model="name"
     />
 
     <label for="Country" class="form__label">COUNTRY</label>
@@ -132,13 +134,10 @@ export default {
       @change="readImage"
     />
 
-    <button type="submit" class="form__submit" @click="(e) => createNewBook()">
+    <button type="submit" class="form__submit" @click="(e) => createNewWine()">
       ADD WINE
     </button>
   </div>
-
-  <img class="illustration" src="../assets/illustration.png" alt="" />
-  <Footer />
 </template>
 
 <style lang="scss">
