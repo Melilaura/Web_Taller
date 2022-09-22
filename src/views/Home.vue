@@ -1,5 +1,6 @@
 <script>
 import HomeCarousel from "../components/HomeCarousel.vue";
+
 import CollectionCarousel from "../components/CollectionCarousel.vue";
 
 export default {
