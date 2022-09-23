@@ -5,6 +5,7 @@ import { useWinesStore } from "../stores/wines.js";
 export default {
   data() {
     return {};
+
   },
 
   computed: {
@@ -15,8 +16,8 @@ export default {
   },
 
   mounted() {
-    this.WinesStore.loadWines();
-    console.log(this.WinesStore.loadWines);
+    this.winesStore.loadWines();
+    console.log(this.winesStore.loadWines);
   },
 };
 </script>
@@ -30,8 +31,8 @@ export default {
       <RouterLink
         class="producted"
         v-for="wine in allWines"
-        :key="wine.id"
-        :to="'/product/$(wine.id)'"
+        :key="wine.name"
+        :to="`/product/${wine.name}`"
       >
         <img :src="wine.image" alt="wine preview" />
         <h4>{{ wine.name }}</h4>

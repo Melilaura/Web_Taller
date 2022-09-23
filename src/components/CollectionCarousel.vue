@@ -1,19 +1,3 @@
-<template>
-    <h4 class="title">Check Out Our Best Sellers</h4>
-
-    <Carousel :itemsToShow="2.95" :wrapAround="true">
-    <Slide v-for="slide in faves" :key="slide">
-      <div class="faves">
-        <img :src="slide.pic" class="faves__pic">
-        <h3 class="faves__text">{{slide.name}}</h3>
-        <h3 class="faves__button">{{slide.price}}</h3>
-     
-      </div>
-    </Slide>
-  </Carousel>
-
-</template>
-
 <script>
 import { defineComponent } from 'vue'
 import { Carousel, Pagination, Slide } from 'vue3-carousel';
@@ -62,6 +46,24 @@ export default {
 };
 </script>
 
+
+<template>
+    <h4 class="title">Check Out Our Best Sellers</h4>
+
+    <Carousel :itemsToShow="2.95" :wrapAround="true">
+    <Slide v-for="slide in faves" :key="slide">
+      <div class="faves">
+        <img :src="slide.pic" class="faves__pic">
+        <h3 class="faves__text">{{slide.name}}</h3>
+        <h3 class="faves__button">{{slide.price}}</h3>
+     
+      </div>
+    </Slide>
+  </Carousel>
+
+</template>
+
+
 <style lang="scss" scoped>
 
 
@@ -88,7 +90,6 @@ export default {
   transform: scale(1);
   opacity: 0.5;
   transition: 0.5s;
-  background:blue;
   
 }
 .carousel__slide--visible > .faves {
@@ -103,8 +104,7 @@ export default {
 }
 .carousel__slide--active > .faves {
   transform: scale(1.1);
-  background:blue;
-
+  
 }
 
 </style>

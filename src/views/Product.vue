@@ -4,38 +4,40 @@
     
     export default {
       data() {
-        return {};
+        return {currentWine: {}};
       },
     
       computed: {
         ...mapStores(useWinesStore),
-        allWines() {
-          return this.winesStore.getWines;
-        },
+       
       },
     
       mounted() {
-        this.WinesStore.loadWines();
-        console.log(this.WinesStore.loadWines);
-      },
-    };
+        this.currentWine = this.winesStore.getWineById(
+            this.$route.params.wineId
+            );
+  },
+};
     </script>
     
     <template>
-      <div class="top">
-        <h2>WELCOME TO OUR STORE</h2>
-      </div>
-      <div class="products">
-        <div class="product">
-          
-            
-            <img :src="wine.image" alt="wine preview" />
-            <h4>{{ wine.name }}</h4>
-         
-        </div>
-      </div>
+      
+
+      <div>
+    <h1>Soy el detalle</h1>
+    <p class="algo">Id del producto: {{ $route.params.wineId }}</p>
+    <p>Nombre Producto: {{ currentWine.name }}</p>
+    <img :src= currentWine.image alt="wine preview" />
+  </div>
     </template>
 
-<style scoped>
+<style scoped="scss">
+
+    p{
+        color:white;
+    }
+    p{
+        color:white;
+    }
 
 </style>

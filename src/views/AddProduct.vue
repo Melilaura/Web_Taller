@@ -3,6 +3,7 @@ import { mapStores } from "pinia";
 import { useWinesStore } from "../stores/wines.js";
 
 export default {
+  
   data() {
     return {
       wine: "",
@@ -11,7 +12,7 @@ export default {
       description: "",
       type: "",
       reader: new FileReader(),
-      imgURL: null
+      imgURL: null,
     };
   },
 
