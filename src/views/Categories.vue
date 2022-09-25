@@ -5,7 +5,6 @@ import { useWinesStore } from "../stores/wines.js";
 export default {
   data() {
     return {};
-
   },
 
   computed: {
@@ -17,7 +16,7 @@ export default {
 
   mounted() {
     this.winesStore.loadWines();
-    console.log(this.winesStore.loadWines);
+    //console.log(this.winesStore.loadWines);
   },
 };
 </script>
@@ -26,6 +25,7 @@ export default {
   <div class="top">
     <h2>WELCOME TO OUR STORE</h2>
   </div>
+
   <div class="products">
     <div class="product">
       <RouterLink
@@ -61,19 +61,18 @@ h2 {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    
   }
 
   .producted {
     align-items: center;
     width: 30%;
     cursor: pointer;
-    margin:1%;
+    margin: 1%;
     img {
       width: 80%;
     }
-    h4{
-      font-size:18px;
+    h4 {
+      font-size: 18px;
     }
   }
 }

@@ -1,43 +1,36 @@
 <script>
-import { defineComponent } from 'vue'
-import { Carousel, Pagination, Slide } from 'vue3-carousel';
+import { defineComponent } from "vue";
+import { Carousel, Pagination, Slide } from "vue3-carousel";
 
-import 'vue3-carousel/dist/carousel.css';
+import "vue3-carousel/dist/carousel.css";
 
 export default {
-    data() {
-        return {
-          faves: [
-            {
-                pic: '/wine.png',
-                name: 'Can-Shaped Cup Set',
-                price: '29.00',
-
-                
-            },
-            {
-                pic: '/wine.png',
-                name: 'Original Family Blend',
-                price: '29.00',
-            },
-            {
-                pic: '/wine.png',
-                name: 'Social Dog',
-                price: '29.00',
-            },
-            {
-                pic: '/wine.png',
-                name: 'Match Bundle',
-                price: '29.00',
-            },
-            {
-                pic: '/wine.png',
-                name: 'Variety Box',
-                price: '29.00',
-            },
-          ],
-        }
-      },
+  data() {
+    return {
+      faves: [
+        {
+          pic: "/wine.png",
+          name: "Wine",
+        },
+        {
+          pic: "/wine.png",
+          name: "Wine",
+        },
+        {
+          pic: "/wine.png",
+          name: "Wine",
+        },
+        {
+          pic: "/wine.png",
+          name: "Wine",
+        },
+        {
+          pic: "/wine.png",
+          name: "Wine",
+        },
+      ],
+    };
+  },
   components: {
     Carousel,
     Slide,
@@ -48,49 +41,48 @@ export default {
 
 
 <template>
-    <h4 class="title">Check Out Our Best Sellers</h4>
+  <h4 class="title">New Collection</h4>
 
-    <Carousel :itemsToShow="2.95" :wrapAround="true">
+  <Carousel :itemsToShow="2.95" :wrapAround="true">
     <Slide v-for="slide in faves" :key="slide">
       <div class="faves">
-        <img :src="slide.pic" class="faves__pic">
-        <h3 class="faves__text">{{slide.name}}</h3>
-        <h3 class="faves__button">{{slide.price}}</h3>
-     
+        <img :src="slide.pic" class="faves__pic" />
+        <h3 class="faves__text">{{ slide.name }}</h3>
       </div>
     </Slide>
   </Carousel>
-
 </template>
 
 
 <style lang="scss" scoped>
 
+$BackgroundColor: black;
+$FontColor: white;
+$FontText: "Lato", sans-serif;
+$FontTextTitle: "Playfair Display", serif;
 
-    .title{
-      font-family: 'Capuche'; 
-      color: white;
-      font-size: 2em;
-      text-align: center;
-      padding: 3%;
-    }
+.title {
+  font-family: $FontTextTitle;
+  color: $FontColor;
+  font-size: 2em;
+  text-align: center;
+  padding: 3%;
+}
 
-    .faves{
-      padding: 5%;
+.faves {
+  padding: 5%;
 
-      &__text{
-        font-family: 'RalewayLight'; 
-        padding: 1.5%;
-        color: white;
+  &__text {
+    font-family: $FontText;
+    padding: 1.5%;
+    color: $FontColor;
+  }
+}
 
-      }
-    }
-
-  .carousel__slide > .faves {
+.carousel__slide > .faves {
   transform: scale(1);
   opacity: 0.5;
   transition: 0.5s;
-  
 }
 .carousel__slide--visible > .faves {
   opacity: 1;
@@ -104,7 +96,5 @@ export default {
 }
 .carousel__slide--active > .faves {
   transform: scale(1.1);
-  
 }
-
 </style>

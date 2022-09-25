@@ -1,3 +1,27 @@
+<script>
+import ErrorModal from "./ErrorModal.vue";
+import ErrorModal1 from "./ErrorModal.vue";
+
+export default {
+  data() {
+    return {
+      showModal: false,
+    };
+  },
+
+  methods: {
+    toggleModal() {
+      this.showModal = !this.showModal;
+    },
+  },
+
+  components: {
+    ErrorModal,
+    ErrorModal1,
+  },
+};
+</script>
+
 <template>
   <header>
     <div class="Logo">
@@ -20,65 +44,106 @@
     </ul>
 
     <div class="Icons">
-      <img alt="searchIcon" class="icon" src="/searchIcon.png" />
-      <img alt="userLogo" class="icon" src="/userIcon.png" />
+      <img
+        @click="showModal = true"
+        alt="searchIcon"
+        class="icon"
+        src="/searchIcon.png"
+      />
+      <img
+        @click="showModal = true"
+        alt="userLogo"
+        class="icon"
+        src="/userIcon.png"
+      />
     </div>
   </header>
+
+  <ErrorModal v-if="showModal" @close="toggleModal" />
 </template>
 
-<script>
-export default {};
-</script>
 
 <style lang="scss">
-header {
-  background-color: none;
+$BackgroundColor: black;
+$FontColor: white;
+$FontText: "Lato", sans-serif;
+$FontTextTitle: "Playfair Display", serif;
 
-  font-family: "Lato", sans-serif;
-  color: #fff;
-
+@mixin display {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   width: 100%;
+}
+
+header {
+  @include display();
+
+  background-color: none;
+  font-family: $FontText;
+  color: $FontColor;
+
+  height: 70px;
 
   .Logo {
-    padding: 5px;
     padding-left: 2%;
     margin-right: 20%;
-
+    img{
+      width: 200%;
+    }
   }
 
   .Menu {
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    display: flex;
+    @include display();
     flex-direction: row;
+    font-size: 15px;
 
-    h1 {
-      font-size: 20px;
+    .header_buttons_item {
+      list-style: none;
+      color: $FontColor;
+      width: 100%;
     }
-
-    .header_buttons_item{
-        list-style: none;
-        color: #fff;
-    }
-
-
   }
-  
+
   .Icons {
     display: flex;
     flex-direction: row;
-    padding-right: 2%;
+    padding-right: 5%;
     margin-left: 20%;
 
     .icon {
-        padding-right: 2%;
-        margin-left: 10px; 
+      //padding-right: 2%;
+      margin-left: 10px;
+      width: 70%;
+    }
+  }
+}
+
+@media all and (max-width: 1180px) {
+  header {
+    width: 80%;
+
+    .Logo{
+      img{
+        width: 40px;
+      }
+    }
+
+    .Menu {
+      font-size: 5px;
+
+      .header_buttons_item {
+        width: 80px;
+      }
+    }
+
+    .Icons {
+      //margin-left: 25%;
+      .icon {
+        width: 100%;
+      }
     }
   }
 }
 </style>
+

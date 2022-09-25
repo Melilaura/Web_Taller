@@ -2,9 +2,7 @@ import { defineStore } from "pinia";
 
 export const useWinesStore = defineStore("wines", {
     state: () => ({
-        wines: [{ name: "computador", country: 'pink', },
-        { name: "fruta", country: 'red' },
-        { name: "casa", country: 'blue' }],
+        wines: [],
         localStorageWines: []
     }),
 
@@ -25,7 +23,7 @@ export const useWinesStore = defineStore("wines", {
         },
         getWineById(id) {
             const filteredWines = this.wines.filter((wine) => id.toLowerCase() === wine.name.toLowerCase());
-            return filteredWines ? {...filteredWines[0] } : null
+            return filteredWines ? { ...filteredWines[0] } : null
         },
 
     }

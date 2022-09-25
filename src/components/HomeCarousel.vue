@@ -8,7 +8,6 @@ export default {
       slides: [
         {
           banner: "/Banner.png",
-          
         },
         {
           banner: "/Banner2.png",
@@ -17,16 +16,12 @@ export default {
           banner: "/Banner3.png",
         },
       ],
-      
     };
-
-
   },
   components: {
     Carousel,
     Slide,
   },
-
 };
 </script>
 
@@ -43,14 +38,18 @@ export default {
 <style scoped lang="scss">
 .banner {
   display: flex;
+  justify-content: flex-end;
+
   &__images {
-    width: 100%;
-    margin-left:10%;
+    width: 85%;
+    margin-left: 15%;
   }
 }
-
-
 .carousel {
   width: 100%;
+}
+
+@media all and (max-width: 1180px) {
+  //it looks good in that way
 }
 </style>

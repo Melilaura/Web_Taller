@@ -1,6 +1,5 @@
 <script>
 import HomeCarousel from "../components/HomeCarousel.vue";
-
 import CollectionCarousel from "../components/CollectionCarousel.vue";
 
 export default {
@@ -11,7 +10,8 @@ export default {
 };
 </script>
 
-<template>
+
+  <template>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -23,38 +23,39 @@ export default {
     <HomeCarousel />
   </div>
 
-  <CollectionCarousel/>
+  <CollectionCarousel />
 
-  <div class="newCollection">
-    <div class="title">
-      <h1>NEW COLLECTION</h1>
-    </div>
-
-    <div class="collection">
-      <img class="icon" src="/Wine.png" />
-    </div>
+  <div class="bannerLast">
+    <img alt="bannerHome" class="bannerHome" src="/Banner4.png"/>
   </div>
+
 </template>
 
-
 <style lang="scss">
+
+$BackgroundColor: black;
+$FontColor: white;
+$FontText: "Playfair Display", serif;
+
 * {
-  background: black;
+  background: $BackgroundColor;
 }
 
 .banner {
   display: flex;
 }
 
-.newCollection{
+.newCollection {
   display: flex;
-  .title{
-    color: white;
-    font-family: 'Playfair Display', serif ;
+
+  .title {
+    color: $FontColor;
+    font-family: $FontText;
   }
-
-
 }
 
-
+.bannerHome{
+  width: 100%;
+  margin:10% 0% 0%;
+}
 </style>
