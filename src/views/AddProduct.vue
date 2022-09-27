@@ -3,7 +3,6 @@ import { mapStores } from "pinia";
 import { useWinesStore } from "../stores/wines.js";
 
 export default {
-  
   data() {
     return {
       wine: "",
@@ -22,11 +21,9 @@ export default {
 
   methods: {
     createNewWine() {
-      //Organize id for book detail page
       const idLowerCase = this.name.toLowerCase();
-      const id = idLowerCase.replace(/\s+/g, '-');
+      const id = idLowerCase.replace(/\s+/g, "-");
 
-      //Create book object
       const newWine = {
         id: id,
         name: this.name,
@@ -34,15 +31,12 @@ export default {
         price: this.price,
         description: this.description,
         type: this.type,
-        image: this.imgURL
+        image: this.imgURL,
       };
 
-      //Add to local storage
       this.winesStore.newWine(newWine);
       console.log(this.name);
-      
 
-      //Empty inputs when new product added to local storage
       this.name = "";
       this.country = "";
       this.price = "";
@@ -58,21 +52,11 @@ export default {
     },
   },
 
-  components: {
-   
-  },
+  components: {},
 };
-
-
-
-
-
-
 </script>
 
 <template>
-
-    
   <h1 class="title">ADD NEW PRODUCT</h1>
 
   <div class="form">
@@ -85,16 +69,23 @@ export default {
       id="name"
       v-model="name"
     />
+      
 
     <label for="Country" class="form__label">COUNTRY</label>
-    <input
-      type="text"
-      name="name"
-      placeholder="Country origin"
-      class="form__input"
-      id="country"
-      v-model="country"
-    />
+    <select name="country" id="country" class="form__input" v-model="country">
+    <option hidden disabled selected value>Select the country..</option>
+      <option value="Spain">Spain</option>
+      <option value="France">France</option>
+      <option value="Chile">Chile</option>
+      <option value="Australia">Australia</option>
+      <option value="Germany">Germany</option>
+      <option value="EE.UU">EE.UU</option>
+      <option value="Argentina">Argentina</option>
+      <option value="South Africa">South Africa</option>
+      <option value="Portugal">Portugal</option>
+      <option value="New Zealand">New Zealand</option>
+      <option value="Italy">Italy</option>
+    </select>
 
     <label for="price" class="form__label">PRICE</label>
     <input
@@ -142,38 +133,43 @@ export default {
 </template>
 
 <style lang="scss">
-$fontColor: #3f1732;
 $mainColor: #3f1732;
 $fontText: "Lato", sans-serif;
+$BackgroundColor: black;
+$FontColor: white;
+$FontText: "Lato", sans-serif;
+$FontTextTitle: "Playfair Display", serif;
 
 .title {
   margin: 45px 30%;
-  font-family: "Playfair", serif;
-  color: white;
+  font-family: $FontTextTitle;
+  color: $FontColor;
 }
 
 .form {
-  font-family: "Playfair", serif;
-  color: white;
+  font-family: $FontTextTitle;
+  color: $FontColor;
   margin: 0px 80px 90px 30%;
-  
-  
 
   &__label {
     font-size: 15px;
   }
 
   &__input {
-    font-family: $fontText;
     display: flex;
+
+    font-family: $FontText;
     font-size: 15px;
-    border: solid 1px $fontColor;
+    color: $FontColor;
+
+    border: solid 1px $mainColor;
     border-radius: 10px;
-    padding: 5px;
+
     width: 50%;
+
+    padding: 5px;
     margin-bottom: 30px;
     margin-top: 10px;
-    color: white;
   }
 
   &__upload {
@@ -186,52 +182,68 @@ $fontText: "Lato", sans-serif;
 
     &::before {
       content: "Bottle image";
-      border: 2px solid $fontColor;
+
+      border: 2px solid $mainColor;
       background-color: $mainColor;
+
       font-weight: normal;
-      color: white;
-      padding: 5px 8px;
+      color: $FontColor;
+
       outline: none;
       cursor: pointer;
-      padding: 10px 40px;
+
       width: 35%;
+
+      padding: 10px 40px;
       margin-top: 20px;
       font-weight: 500;
     }
 
     &:hover::before {
-      color: $fontColor;
-      background-color: white;
-      border: 1px solid $fontColor;
+      background-color: $FontColor;
+
+      font-weight: 500;
+      color: $mainColor;
+
+      border: 1px solid $mainColor;
       border-radius: 10px;
-      padding: 5px 8px;
+
       outline: none;
       cursor: pointer;
-      cursor: pointer;
-      padding: 10px 40px;
+
       width: 35%;
+
+      padding: 10px 40px;
       margin-top: 20px;
-      font-weight: 500;
     }
   }
 
   &__submit {
-    font-family: $fontText;
-    color: $fontColor;
-    background-color: transparent;
-    border: 2px solid $fontColor;
-    padding: 10px 40px;
-    width: 35%;
-    margin-top: 20px;
+    font-family: $FontColor;
     font-weight: 500;
+    color: $mainColor;
+
+    background-color: transparent;
+
+    width: 35%;
+
+    border: 2px solid $mainColor;
+
+    padding: 10px 40px;
+    margin-top: 20px;
 
     &:hover {
-      cursor: pointer;
-      border: 2px solid $fontColor;
-      background-color: $mainColor;
       font-weight: normal;
-      color: white;
+      color: $FontColor;
+
+      cursor: pointer;
+
+      border: 2px solid $mainColor;
+      background-color: $mainColor;
     }
   }
+}
+
+@media all and (max-width: 1180px) {
 }
 </style>

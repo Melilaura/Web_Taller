@@ -45,15 +45,6 @@ $FontText: "Playfair Display", serif;
   display: flex;
 }
 
-.newCollection {
-  display: flex;
-
-  .title {
-    color: $FontColor;
-    font-family: $FontText;
-  }
-}
-
 .bannerHome{
   width: 100%;
   margin:10% 0% 0%;
