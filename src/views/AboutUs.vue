@@ -2,23 +2,28 @@
 </script>
 
 <template>
-    <div class="about">
-      <h1>This is an about page</h1>
-    </div>
+  <div class="about">
+    <h2>This page is not available</h2>
+  </div>
 
-    <div >
-
-    </div>
+  <div></div>
 </template>
   
-  <style>
-  @media (min-width: 1024px) {
-    .about {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      color: white;
-    }
-  }
-  </style>
+  <style lang="scss">
+$mainColor: #3f1732;
+$fontText: "Lato", sans-serif;
+$BackgroundColor: black;
+$FontColor: white;
+$FontText: "Lato", sans-serif;
+$FontTextTitle: "Playfair Display", serif;
+
+.about {
+  font-family: $FontTextTitle;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $FontColor;
+  margin: 20%;
+}
+</style>
   

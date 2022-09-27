@@ -1,43 +1,73 @@
 <script>
-    import { mapStores } from "pinia";
-    import { useWinesStore } from "../stores/wines.js";
-    
-    export default {
-      data() {
-        return {currentWine: {}};
-      },
-    
-      computed: {
-        ...mapStores(useWinesStore),
-       
-      },
-    
-      mounted() {
-        this.currentWine = this.winesStore.getWineById(
-            this.$route.params.wineId
-            );
+import { mapStores } from "pinia";
+import { useWinesStore } from "../stores/wines.js";
+
+export default {
+  data() {
+    return { currentWine: {} };
+  },
+
+  computed: {
+    ...mapStores(useWinesStore),
+  },
+
+  mounted() {
+    this.currentWine = this.winesStore.getWineById(this.$route.params.wineId);
   },
 };
-    </script>
+</script>
     
     <template>
-      
+  <div class="product">
+    <div class="productImage">
+      <img :src="currentWine.image" alt="wine preview" />
+    </div>
 
-      <div>
-    <h1>Soy el detalle</h1>
-    <p class="algo">Id del producto: {{ $route.params.wineId }}</p>
-    <p>Nombre Producto: {{ currentWine.name }}</p>
-    <img :src= currentWine.image alt="wine preview" />
+    <div class="productInfo">
+      <h1>{{ currentWine.name }}</h1>
+      <h3 class="text">{{ currentWine.country }}</h3>
+      <h3 class="text">${{ currentWine.price }}</h3>
+      <h4 class="text">{{ currentWine.description }}</h4>
+    </div>
   </div>
-    </template>
+</template>
 
-<style scoped="scss">
+<style lang="scss">
+$mainColor: #3f1732;
+$fontText: "Lato", sans-serif;
+$BackgroundColor: black;
+$FontColor: white;
+$FontText: "Lato", sans-serif;
+$FontTextTitle: "Playfair Display", serif;
 
-    p{
-        color:white;
+.product {
+  display: flex;
+
+  .productImage {
+    width: 35%;
+    margin: 5%;
+  }
+
+  .productInfo {
+    color: $FontColor;
+    margin: 5% 15%;
+    h1 {
+      font-family: $FontTextTitle;
     }
-    p{
-        color:white;
-    }
 
+    .text {
+      font-family: $FontText;
+    }
+  }
+}
+
+@media all and (max-width: 1180px) {
+
+  .productImage {
+    img{
+    width: 200%;
+  }
+  }
+ 
+}
 </style>

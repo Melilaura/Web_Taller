@@ -10,26 +10,31 @@ export default {
           pic: "/wine.png",
           name: "Wine",
           color: "pink",
+          country:"Italy",
         },
         {
           pic: "/wine.png",
           name: "Wine",
           color: "purple",
+          country:"Spain",
         },
         {
           pic: "/wine.png",
           name: "Wine",
           color: "blue",
+          country:"France",
         },
         {
           pic: "/wine.png",
           name: "Wine",
           color: "white",
+          country:"Spain",
         },
         {
           pic: "/wine.png",
           name: "Wine",
           color: "green",
+          country:"Chile",
         },
       ],
     };
@@ -52,6 +57,7 @@ export default {
       <div class="news">
         <img :src="slide.pic" class="news__pic" />
         <h3 class="news__text">{{ slide.name }}</h3>
+        <h3 class="news__text">{{ slide.country }}</h3>
         <h3 class="news__type" v-on:show="bgc.backgroundcolor = slide.color"></h3>
       </div>
     </Slide>
@@ -79,13 +85,9 @@ $FontTextTitle: "Playfair Display", serif;
 .news {
   padding: 5%;
 
-
- 
-
   &__text {
     font-family: $FontText;
     color: $FontColor;
-    padding: 1.5%;
   }
 
   img{

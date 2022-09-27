@@ -245,5 +245,6 @@ $FontTextTitle: "Playfair Display", serif;
 }
 
 @media all and (max-width: 1180px) {
+  //its all okay i think
 }
 </style>

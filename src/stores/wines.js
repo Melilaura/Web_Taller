@@ -62,23 +62,23 @@ export const useWinesStore = defineStore("wines", {
                         break;
                     case "0":
                         this.loadWines();
-                        this.wines = this.wines.filter((item) => item.type === "Red wine");
+                        this.wines = this.wines.filter((item) => item.type === "red");
                         break;
                     case "1":
                         this.loadWines();
-                        this.wines = this.wines.filter((item) => item.type === "White wine");
+                        this.wines = this.wines.filter((item) => item.type === "white");
                         break;
                     case "2":
                         this.loadWines();
-                        this.wines = this.wines.filter((item) => item.type === "Dessert wine");
+                        this.wines = this.wines.filter((item) => item.type === "dessert");
                         break;
                     case "3":
                         this.loadWines();
-                        this.wines = this.wines.filter((item) => item.type === "Sparkling wine");
+                        this.wines = this.wines.filter((item) => item.type === "sparkling");
                         break;
                     case "4":
                         this.loadWines();
-                        this.wines = this.wines.filter((item) => item.type === "Miscellaneous wine");
+                        this.wines = this.wines.filter((item) => item.type === "miscellaneous");
                         break;
                 }
             }
