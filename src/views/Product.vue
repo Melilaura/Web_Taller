@@ -46,6 +46,9 @@ $FontTextTitle: "Playfair Display", serif;
   .productImage {
     width: 35%;
     margin: 5%;
+    img{
+    width: 200%;
+  }
   }
 
   .productInfo {

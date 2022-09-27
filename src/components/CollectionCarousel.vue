@@ -7,35 +7,24 @@ export default {
     return {
       news: [
         {
-          pic: "/wine.png",
-          name: "Wine",
+          pic: "/Bottle1.png",
+          name: "Castillo Ygay, de Marqués Murrieta",
           color: "pink",
-          country:"Italy",
-        },
-        {
-          pic: "/wine.png",
-          name: "Wine",
-          color: "purple",
           country:"Spain",
         },
         {
-          pic: "/wine.png",
-          name: "Wine",
-          color: "blue",
+          pic: "/Bottle2.png",
+          name: "Châteauneuf-du-Pape Les Trois S.",
+          color: "purple",
           country:"France",
         },
         {
-          pic: "/wine.png",
-          name: "Wine",
-          color: "white",
-          country:"Spain",
+          pic: "/Bottle3.png",
+          name: "Chardonnay Russian River Valley Vine H V.",
+          color: "blue",
+          country:"EE.UU",
         },
-        {
-          pic: "/wine.png",
-          name: "Wine",
-          color: "green",
-          country:"Chile",
-        },
+        
       ],
     };
   },
