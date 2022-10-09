@@ -112,6 +112,7 @@ export const useWinesStore = defineStore("wines", {
                 'type': 'sparkling',
                 'image': '/wine.png',
             },];
+            
             this.localStorageWines = JSON.parse(localStorage.getItem('wines'));
             this.wines = this.wines.concat([...this.localStorageWines]);
         },

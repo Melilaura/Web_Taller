@@ -88,7 +88,7 @@ header {
   .Logo {
     padding-left: 2%;
     margin-right: 20%;
-    img{
+    img {
       width: 200%;
     }
   }
@@ -123,8 +123,8 @@ header {
   header {
     width: 80%;
 
-    .Logo{
-      img{
+    .Logo {
+      img {
         width: 40px;
       }
     }
@@ -144,6 +144,11 @@ header {
       }
     }
   }
+}
+
+@media all and (max-width: 896px) {
+ 
+  
 }
 </style>
 

@@ -140,6 +140,8 @@ $FontColor: white;
 $FontText: "Lato", sans-serif;
 $FontTextTitle: "Playfair Display", serif;
 
+
+
 .title {
   margin: 45px 30%;
   font-family: $FontTextTitle;

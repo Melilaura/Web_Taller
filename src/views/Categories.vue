@@ -89,7 +89,10 @@ export default {
         :to="`/product/${wine.name}`"
       >
         <img :src="wine.image" alt="wine preview" />
-        <h4>{{ wine.name }}</h4>
+        <h1>{{ wine.name }}</h1>
+        <h2>{{ wine.type }}</h2>
+        <h3>$ {{ wine.price }}</h3>
+        <button class="addCart">Add to cart</button>
       </RouterLink>
     </div>
   </div>
@@ -97,11 +100,16 @@ export default {
 
 <style lang="scss" >
 $mainColor: #3f1732;
+$newColor: #af0853;
 $fontText: "Lato", sans-serif;
 $BackgroundColor: black;
 $FontColor: white;
 $FontText: "Lato", sans-serif;
 $FontTextTitle: "Playfair Display", serif;
+
+@mixin container {
+  background-color: transparent;
+}
 
 .productFilter {
   display: flex;
@@ -143,23 +151,81 @@ h2 {
   flex-wrap: wrap;
   margin: 5% 10%;
   justify-content: center;
+}
 
-  .product {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+.product {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.producted {
+  display: flex;
+  align-items: center;
+  width: 30%;
+  cursor: pointer;
+  margin: 1%;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: column;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  background-color: rgba(63, 23, 50, 0.5);
+
+  border-radius: 30px;
+
+  padding: 2% 0%;
+
+  img {
+    width: 50%;
+    @include container();
+  }
+  h1 {
+    font-size: 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 0%;
+    width: 90%;
+    @include container();
   }
 
-  .producted {
-    align-items: center;
-    width: 30%;
-    cursor: pointer;
-    margin: 1%;
-    img {
-      width: 80%;
-    }
-    h4 {
-      font-size: 18px;
+  h2 {
+    margin: 2%;
+    font-size: 20px;
+    font-family: $FontText;
+    font-weight: lighter;
+    @include container();
+  }
+
+  h3 {
+    margin: 0%;
+    font-family: $FontText;
+    @include container();
+  }
+
+  .addCart {
+    font-family: $FontText;
+    font-weight: 20px;
+
+    color: $newColor;
+    background-color: transparent;
+
+    border: 2px solid $newColor;
+    border-radius: 10%;
+
+    padding: 5px 50px;
+    margin-top: 10px;
+
+    &:hover {
+      font-weight: normal;
+      color: $FontColor;
+
+      cursor: pointer;
+
+      border: 2px solid $newColor;
+      background-color: $newColor;
     }
   }
 }

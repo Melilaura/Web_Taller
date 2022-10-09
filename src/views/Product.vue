@@ -25,6 +25,7 @@ export default {
 
     <div class="productInfo">
       <h1>{{ currentWine.name }}</h1>
+      <h3 class="text">{{ currentWine.type }}</h3>  
       <h3 class="text">{{ currentWine.country }}</h3>
       <h3 class="text">${{ currentWine.price }}</h3>
       <h4 class="text">{{ currentWine.description }}</h4>
@@ -47,7 +48,7 @@ $FontTextTitle: "Playfair Display", serif;
     width: 35%;
     margin: 5%;
     img{
-    width: 200%;
+    width: 100%;
   }
   }
 
