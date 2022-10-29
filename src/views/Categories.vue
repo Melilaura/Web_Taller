@@ -31,13 +31,13 @@ export default {
   methods: {
     sortBy(event){
                 let selection = event.target.value;
-                this.productsStore.sortProducts(selection);
+                this.winesStore.sortWine(selection);
             },
  
             filterBy(event, caller){
                 let selected = event.target.value;
                 console.log(selected);
-                this.productsStore.filterProducts(selected, caller);
+                this.winesStore.filterWine(selected, caller);
             },
   },
 };
@@ -49,7 +49,7 @@ export default {
   </div>
 
   <div class="productFilter">
-    <select class="productFilterSelect" @change="filterBy($event, 'A')">
+    <select class="productFilterSelect" @change="filterBy($event,'A')">
       <option value="noFilter" disabled selected>Type of Products</option>
       <option value="noFilter">Any Type</option>
       <option value="0">Red wine</option>
@@ -58,7 +58,7 @@ export default {
       <option value="3">Sparkling wine</option>
       <option value="4">Miscellaneous wine</option>
     </select>
-    <select class="productFilterSelect" @change="filterBy($event, 'B')">
+    <select class="productFilterSelect" @change=" filterBy($event, 'B')">
       <option value="noFilter" disabled selected>Price</option>
       <option value="noFilter">Any Price</option>
       <option value="0">Lower than 50$</option>

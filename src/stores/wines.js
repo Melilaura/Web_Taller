@@ -150,23 +150,23 @@ export const useWinesStore = defineStore("wines", {
                         break;
                     case "0":
                         this.displayWine();
-                        this.wines = this.wines.filter((item) => item.type === "red");
+                        this.wines = this.wine.filter((wine) => wine.type === "red");
                         break;
                     case "1":
                         this.displayWine();
-                        this.wines = this.wines.filter((item) => item.type === "white");
+                        this.wines = this.wine.filter((wine) => wine.type === "white");
                         break;
                     case "2":
                         this.displayWine();
-                        this.wines = this.wines.filter((item) => item.type === "dessert");
+                        this.wines = this.wine.filter((wine) => wine.type === "dessert");
                         break;
                     case "3":
                         this.displayWine();
-                        this.wines = this.wines.filter((item) => item.type === "sparkling");
+                        this.wines = this.wine.filter((wine) => wine.type === "sparkling");
                         break;
                     case "4":
                         this.displayWine();
-                        this.wines = this.wines.filter((item) => item.type === "miscellaneous");
+                        this.wines = this.wine.filter((wine) => wine.type === "miscellaneous");
                         break;
                 }
             }
@@ -178,15 +178,15 @@ export const useWinesStore = defineStore("wines", {
                         break;
                     case "0":
                         this.displayWine();
-                        this.wines = this.wines.filter((item) => item.price < 50);
+                        this.wines = this.wines.filter((wine) => wine.price < 50);
                         break;
                     case "1":
                         this.displayWine();
-                        this.wines = this.wines.filter((item) => item.price < 90);
+                        this.wines = this.wines.filter((wine) => wine.price < 90);
                         break;
                     case "2":
                         this.displayWine();
-                        this.wines = this.wines.filter((item) => item.price < 100);
+                        this.wines = this.wines.filter((wine) => wine.price < 100);
                         break;
                 }
             }
@@ -198,54 +198,54 @@ export const useWinesStore = defineStore("wines", {
                         break;
                     case "0":
                         this.displayWine();
-                        this.wines = this.wines.filter((item) => item.country === "Spain");
+                        this.wines = this.wines.filter((wine) => wine.country === "Spain");
                         break;
                     case "1":
                         this.displayWine();
-                        this.wines = this.wines.filter((item) => item.country === "France");
+                        this.wines = this.wines.filter((wine) => wine.country === "France");
                         break;
                     case "2":
                         this.displayWine();
-                        this.wines = this.wines.filter((item) => item.country === "Chile");
+                        this.wines = this.wines.filter((wine) => wine.country === "Chile");
                         break;
                     case "3":
                         this.displayWine();
-                        this.wines = this.wines.filter((item) => item.country === "Australia");
+                        this.wines = this.wines.filter((wine) => wine.country === "Australia");
                         break;
 
                     case "4":
                         this.displayWine();
-                        this.wines = this.wines.filter((item) => item.country === "Germany");
+                        this.wines = this.wines.filter((wine) => wine.country === "Germany");
                         break;
 
                     case "5":
                         this.displayWine();
-                        this.wines = this.wines.filter((item) => item.country === "EE.UU");
+                        this.wines = this.wines.filter((wine) => wine.country === "EE.UU");
                         break;
 
                     case "6":
                         this.displayWine();
-                        this.wines = this.wines.filter((item) => item.country === "Argentina");
+                        this.wines = this.wines.filter((wine) => wine.country === "Argentina");
                         break;
 
                     case "7":
                         this.displayWine();
-                        this.wines = this.wines.filter((item) => item.country === "South Africa");
+                        this.wines = this.wines.filter((wine) => wine.country === "South Africa");
                         break;
 
                     case "8":
                         this.displayWine();
-                        this.wines = this.wines.filter((item) => item.country === "Portugal");
+                        this.wines = this.wines.filter((wine) => wine.country === "Portugal");
                         break;
 
                     case "9":
                         this.displayWine();
-                        this.wines = this.wines.filter((item) => item.country === "New Zealand");
+                        this.wines = this.wines.filter((wine) => wine.country === "New Zealand");
                         break;
 
                     case "10":
                         this.displayWine();
-                        this.wines = this.wines.filter((item) => item.country === "Italy");
+                        this.wines = this.wines.filter((wine) =>wine.country === "Italy");
                         break;
 
                 }
