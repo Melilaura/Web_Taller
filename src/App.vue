@@ -5,6 +5,9 @@ import Home from "./views/Home.vue";
 import Categories from "./views/Categories.vue";
 import AddProduct from "./views/AddProduct.vue";
 
+import Login from "./views/Login.vue";
+import SignUp from "./views/SignUp.vue";
+
 import Menu from "./components/Menu.vue";
 import Footer from "./components/Footer.vue";
 //import HomeCarousel from './components/HomeCarousel.vue'
@@ -16,6 +19,8 @@ export default {
     Categories,
     AddProduct,
     Footer,
+    Login,
+    SignUp,
   },
 };
 </script>

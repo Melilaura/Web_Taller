@@ -25,7 +25,13 @@ export default {
 <template>
   <header>
     <div class="Logo">
-      <img alt="Logo" class="logo" src="/Logo.png" />
+
+      <RouterLink :to="{ name: 'home' }"
+      class="icon" >
+          <img class="logo" src="/Logo.png" alt="Logo" />
+      </RouterLink>
+
+      
     </div>
 
     <ul class="Menu">
@@ -44,18 +50,18 @@ export default {
     </ul>
 
     <div class="Icons">
-      <img
-        @click="showModal = true"
-        alt="searchIcon"
-        class="icon"
-        src="/searchIcon.png"
-      />
-      <img
-        @click="showModal = true"
-        alt="userLogo"
-        class="icon"
-        src="/userIcon.png"
-      />
+     
+
+      <RouterLink :to="{ name: 'cart' }"
+      class="icon" >
+          <img class="icon" src="/goOut.png" alt="" />
+      </RouterLink>
+
+      <RouterLink :to="{ name: 'login' }"
+      class="icon" >
+          <img class="icon" src="/userIcon.png" alt="" />
+      </RouterLink>
+
     </div>
   </header>
 
@@ -88,8 +94,9 @@ header {
   .Logo {
     padding-left: 2%;
     margin-right: 20%;
+    margin-top:10px;
     img {
-      width: 200%;
+      width: 250%;
     }
   }
 
@@ -110,12 +117,12 @@ header {
     flex-direction: row;
     padding-right: 5%;
     margin-left: 20%;
+  }
 
-    .icon {
-      //padding-right: 2%;
-      margin-left: 10px;
-      width: 70%;
-    }
+  .icon {
+    //padding-right: 2%;
+    margin-left: 10px;
+    width: 30px;
   }
 }
 
@@ -147,8 +154,6 @@ header {
 }
 
 @media all and (max-width: 896px) {
- 
-  
 }
 </style>
 

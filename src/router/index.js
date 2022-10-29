@@ -40,6 +40,25 @@ const router = createRouter({
       //component: AboutUs
       component: () => import('../views/Product.vue')
     },
+    {
+      path: '/login',
+      name: 'login',
+      //component: Login
+      component: () => import('../views/Login.vue')
+    },
+    {
+      path: '/signUp',
+      name: 'signUp',
+      //component: Login
+      component: () => import('../views/SignUp.vue')
+    },
+
+    {
+      path: '/cart',
+      name: 'cart',
+      //component: Login
+      component: () => import('../views/Cart.vue')
+    },
 
   ]
 })

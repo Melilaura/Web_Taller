@@ -1,11 +1,14 @@
 <script>
 import { mapStores } from "pinia";
-import { useWinesStore } from "../stores/wines.js";
+import { useWinesStore } from "../stores/wines";
 
 export default {
   data() {
-    return {};
-  },
+    return {
+      wines: [],
+     
+  };
+},
 
   computed: {
     ...mapStores(useWinesStore),
@@ -15,7 +18,7 @@ export default {
   },
 
   mounted() {
-    this.winesStore.loadWines();
+    this.winesStore.displayItem();
     //console.log(this.winesStore.loadWines);
   },
 
@@ -85,14 +88,14 @@ export default {
       <RouterLink
         class="producted"
         v-for="wine in allWines"
-        :key="wine.name"
-        :to="`/product/${wine.name}`"
+        :key="wine.Name"
+        :to="`/product/${wine.id}`"
       >
         <img :src="wine.image" alt="wine preview" />
-        <h1>{{ wine.name }}</h1>
-        <h2>{{ wine.type }}</h2>
-        <h3>$ {{ wine.price }}</h3>
-        <button class="addCart">Add to cart</button>
+        <h1>{{ wine.Name }}</h1>
+        <h2>{{ wine.Type }}</h2>
+        <h3>$ {{ wine.Price }}</h3>
+      
       </RouterLink>
     </div>
   </div>
