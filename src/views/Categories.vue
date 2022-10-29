@@ -39,6 +39,7 @@ export default {
                 console.log(selected);
                 this.winesStore.filterWine(selected, caller);
             },
+            
   },
 };
 </script>
