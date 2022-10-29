@@ -45,7 +45,7 @@ export default {
         ><li class="header_buttons_item">About Us</li></RouterLink
       >
       <RouterLink :to="{ name: 'addProduct' }"
-        ><li class="header_buttons_item">Add product</li></RouterLink
+        ><li class="header_buttons_item" >Add product</li></RouterLink
       >
     </ul>
 

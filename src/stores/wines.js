@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import _, { map } from 'underscore';
 import { auth, db } from '../firebase/config';
-import { doc, getDoc, setDoc, getDocs, collection, updateDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, getDocs, collection, updateDoc, increment, runTransaction } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export const useWinesStore = defineStore("wines", {
@@ -35,7 +35,7 @@ export const useWinesStore = defineStore("wines", {
                 "description": doc.data().wineDescription,
                 "type": doc.data().wineType,
                 "image": doc.data().image,                
-               //"Rating": doc.data().productRating,
+               "rating": doc.data().wineRating,
 
             }
     
@@ -299,7 +299,40 @@ export const useWinesStore = defineStore("wines", {
 
               
             
+              async changeRating(wineInfo, newValue){
 
+            
+                   const wineRef = doc(db, "wine", wineInfo.id);
+            
+                    await updateDoc(wineRef, {
+                        totalRatings: increment(1)
+                    });
+            
+                    await updateDoc(wineRef, {
+                        allRatings: increment(newValue)
+                    });
+                    
+                    const wineDocRef = doc(db, "wine", wineInfo.id);
+            
+                    try {
+                
+                        await runTransaction(db, async (transaction) => {
+                          const wineDoc = await transaction.get(wineDocRef);
+                          if (!wineDoc.exists()) {
+                            throw "Document does not exist!";
+                          }
+                      
+                          console.log(wineDoc.data().wineRating + newValue);
+            
+                          const newRating = (wineDoc.data().allRatings/wineDoc.data().totalRatings);
+                          transaction.update(wineDocRef, { wineRating: newRating });
+                        });
+                        console.log("Transaction successfully committed!");
+                      } catch (e) {
+                        console.log("Transaction failed: ", e);
+                      }
+            
+              }
        
         
     }

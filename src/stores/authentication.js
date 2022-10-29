@@ -83,8 +83,9 @@ export const useAuthenticationStore = defineStore("authentication", {
                 this.userLogged = user;
               this.userId = user.uid;this.userLogged = user;
 
-              if (user.uid == "Be9UXHWFcyREhEDwxyN2qepH0Pp2") {
+              if (user.uid == "UpjpdFB6ZESOQpwebWslLHMF1312") {
                   this.isAdmin = true;
+                  alert("you are admin")
               } 
 
             } else {
@@ -95,20 +96,24 @@ export const useAuthenticationStore = defineStore("authentication", {
         },
     
         async checkIfUserIsAdmin(){
-          const docRef = doc(db, "users", this.userId);
-          const docSnap = await getDoc(docRef);
-    
-          if(docSnap.exists()){
-            console.log("Document Data: ", docSnap.data());
-    
-            this.isAdmin = docSnap.data().isUserAdmin;
-          }
-          else{
-            console.log("error no document auth");
-          }
-          
-        }
+          onAuthStateChanged(auth, (user) => {
+            if (user) {
+                this.userLogged = user;
 
-  },
+                if (user.uid == "UpjpdFB6ZESOQpwebWslLHMF1312") {
+                    this.isAdmin = true;
+                    alert("you are admin")
+                }
+            } else {
+                console.log("No user")
+            }
+        })
 
-  });
+        return this.userLogged; 
+    },
+
+    getIsAdmin() {
+        return this.isAdmin;
+    }
+}
+});

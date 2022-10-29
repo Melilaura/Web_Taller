@@ -1,6 +1,6 @@
 <script>
 import { mapStores } from "pinia";
-import { useWinesStore } from "../stores/wines.js";
+import { useWinesStore } from "../stores/wines";
 
 export default {
   data() {
@@ -13,7 +13,10 @@ export default {
         wineType: "",
         wineType: "",
         image: "",
-      },
+        wineRating: "",
+				allRatings: 0,
+				totalRating: 0,
+      },  
     };
   },
 
@@ -95,6 +98,19 @@ export default {
         required
       />
 
+      <label for="price" class="form__label">RATING</label>
+      <input
+        type="number"
+        name="rating"
+        placeholder="Actual rating (it could be 0)"
+        id="rating"
+        class="form__input"
+        v-model="newWine.wineRating"
+        required
+      />
+
+      
+
       <label for="description" class="form__label">DESCRIPTION</label>
       <textarea
         name="description"
@@ -113,6 +129,7 @@ export default {
         v-model="newWine.wineType"
         required
       >
+      
         <option hidden disabled selected value>
           Select the type of wine...
         </option>
