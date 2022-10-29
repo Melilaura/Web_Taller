@@ -16,24 +16,24 @@ export const useWinesStore = defineStore("wines", {
     }),
 
     getters: {
-        //getWines: (state) => [...state.wines],
+        getWines: (state) => [...state.wines],
         getShoppingCart: (state) => [...state.shoppingCart],
     },
 
     actions: {
 
         async defineDocs(){
-            const querySnapshot = await getDocs(collection(db, "items"));
+            const querySnapshot = await getDocs(collection(db, "wine"));
             querySnapshot.forEach((doc) => {
             console.log(doc.id, " => ", doc.data());
     
             const wine = {
                 "id": doc.id,
-                "Name": doc.data().wineName,
-                "Country": doc.data().wineCountry,
-                "Price": doc.data().winePrice,
-                "Description": doc.data().wineDescription,
-                "Type": doc.data().wineType,
+                "name": doc.data().wineName,
+                "country": doc.data().wineCountry,
+                "price": doc.data().winePrice,
+                "description": doc.data().wineDescription,
+                "type": doc.data().wineType,
                 "image": doc.data().image,                
                //"Rating": doc.data().productRating,
 
@@ -45,8 +45,8 @@ export const useWinesStore = defineStore("wines", {
     
           },
 
-          async getWines() {
-            const collectionRef = collection(db, "wines");
+          /*async getWines() {
+            const collectionRef = collection(db, "wine");
             try {
                 const { docs } = await getDocs(collectionRef);
                 const wines = docs.map((doc) => {
@@ -58,9 +58,9 @@ export const useWinesStore = defineStore("wines", {
             } catch (error) {
                 console.log(error);
             }
-        },
+        },*/
 
-        async displayItem(){
+        async displayWine(){
     
           this.list = [];
           this.wines = [];
@@ -69,23 +69,25 @@ export const useWinesStore = defineStore("wines", {
           console.log(this.wines);
           
         
-          let itemValue;
+          let wineValue;
           let wine;
     
-          let itemArr = [];
+          let wineArr = [];
     
           for(let i = 0; i < localStorage.length; i++){
-              itemValue = localStorage.getItem(localStorage.key(i));
-              wine = JSON.parse(itemValue);
-    
+              wineValue = localStorage.getItem(localStorage.key(i));
+              wine = JSON.parse(wineValue);
+              console.log(this.wines);
+              
               this.wines.push(wine);
+           
               
           }
     
-          for(let j = 0; j < itemArr.length; j++){
+          for(let i = 0; i < wineArr.length; i++){
     
-              this.item = itemArr[j];
-              this.list.push(this.item);
+              this.wine = wineArr[i];
+              this.list.push(this.wine);
           }
     
       },
@@ -144,26 +146,26 @@ export const useWinesStore = defineStore("wines", {
             if (filterDo == "A") {
                 switch (key) {
                     case "noFilter":
-                        this.displayItem();
+                        this.displayWine();
                         break;
                     case "0":
-                        this.displayItem();
+                        this.displayWine();
                         this.wines = this.wines.filter((item) => item.type === "red");
                         break;
                     case "1":
-                        this.displayItem();
+                        this.displayWine();
                         this.wines = this.wines.filter((item) => item.type === "white");
                         break;
                     case "2":
-                        this.displayItem();
+                        this.displayWine();
                         this.wines = this.wines.filter((item) => item.type === "dessert");
                         break;
                     case "3":
-                        this.displayItem();
+                        this.displayWine();
                         this.wines = this.wines.filter((item) => item.type === "sparkling");
                         break;
                     case "4":
-                        this.displayItem();
+                        this.displayWine();
                         this.wines = this.wines.filter((item) => item.type === "miscellaneous");
                         break;
                 }
@@ -172,18 +174,18 @@ export const useWinesStore = defineStore("wines", {
             if (filterDo == "B") {
                 switch (key) {
                     case "noFilter":
-                        this.displayItem();
+                        this.displayWine();
                         break;
                     case "0":
-                        this.displayItem();
+                        this.displayWine();
                         this.wines = this.wines.filter((item) => item.price < 50);
                         break;
                     case "1":
-                        this.displayItem();
+                        this.displayWine();
                         this.wines = this.wines.filter((item) => item.price < 90);
                         break;
                     case "2":
-                        this.displayItem();
+                        this.displayWine();
                         this.wines = this.wines.filter((item) => item.price < 100);
                         break;
                 }
@@ -192,63 +194,111 @@ export const useWinesStore = defineStore("wines", {
             if (filterDo == "C") {
                 switch (key) {
                     case "noFilter":
-                        this.displayItem();
+                        this.displayWine();
                         break;
                     case "0":
-                        this.displayItem();
+                        this.displayWine();
                         this.wines = this.wines.filter((item) => item.country === "Spain");
                         break;
                     case "1":
-                        this.displayItem();
+                        this.displayWine();
                         this.wines = this.wines.filter((item) => item.country === "France");
                         break;
                     case "2":
-                        this.displayItem();
+                        this.displayWine();
                         this.wines = this.wines.filter((item) => item.country === "Chile");
                         break;
                     case "3":
-                        this.displayItem();
+                        this.displayWine();
                         this.wines = this.wines.filter((item) => item.country === "Australia");
                         break;
 
                     case "4":
-                        this.displayItem();
+                        this.displayWine();
                         this.wines = this.wines.filter((item) => item.country === "Germany");
                         break;
 
                     case "5":
-                        this.displayItem();
+                        this.displayWine();
                         this.wines = this.wines.filter((item) => item.country === "EE.UU");
                         break;
 
                     case "6":
-                        this.displayItem();
+                        this.displayWine();
                         this.wines = this.wines.filter((item) => item.country === "Argentina");
                         break;
 
                     case "7":
-                        this.displayItem();
+                        this.displayWine();
                         this.wines = this.wines.filter((item) => item.country === "South Africa");
                         break;
 
                     case "8":
-                        this.displayItem();
+                        this.displayWine();
                         this.wines = this.wines.filter((item) => item.country === "Portugal");
                         break;
 
                     case "9":
-                        this.displayItem();
+                        this.displayWine();
                         this.wines = this.wines.filter((item) => item.country === "New Zealand");
                         break;
 
                     case "10":
-                        this.displayItem();
+                        this.displayWine();
                         this.wines = this.wines.filter((item) => item.country === "Italy");
                         break;
 
                 }
             }
         },
+
+
+            async addProductToCart(userId, wineInfo){
+
+                console.log("SHOWING", userId, wineInfo.id);
+            
+                try{
+                    if(userId != null){
+                        await setDoc(doc(db, "users", userId, "cart", wineInfo.id), wineInfo);
+                        alert("Product added to cart");
+                    }
+                    else{
+                        alert("Please log in before adding products to cart");
+                    }
+                  }
+            
+                  catch(error){
+                    console.log(error);
+                  }
+              },
+            
+              async assingValuesToCart(data){
+                this.cartData = data;
+                this.shoppingCart.push(this.cartData);
+              },
+            
+              async getCart(userId){
+                this.shoppingCart = [];
+                const querySnapshot = await getDocs(collection(db, "users", userId, "cart"));
+                querySnapshot.forEach((doc) => {
+                console.log(doc.id, " => ", doc.data());
+            
+                this.assingValuesToCart(doc.data())
+            
+                });
+              },
+            
+              async uploadPicture(file){
+                const storage = getStorage();
+                const storageRef = ref(storage, 'imgs')
+            
+                uploadBytes(storageRef, file).then((snapshot) => {
+                    console.log('Uploaded file');
+                })
+              },
+
+              
+            
 
        
         

@@ -1,6 +1,6 @@
 <script>
 import { mapStores } from "pinia";
-import { useWinesStore } from "../stores/wines.js";
+import { useWinesStore } from "../stores/wines";
 import { useAuthenticationStore } from '../stores/authentication';
 
 export default {
@@ -18,13 +18,18 @@ export default {
 
   mounted() {
     this.currentWine = this.winesStore.getWineById(this.$route.params.wineId);
+    console.log(this.getUser)
   },
 
   methods: {
-            addToCart(){
-               this.productsStore.addProductToCart(this.getUser, this.currentWine);
-                 console.log("agregado")
+    addToCart(){
+                this.winesStore.addProductToCart(this.getUser, this.currentWine);
             },
+
+           /* rateProduct(rating){
+                console.log(rating);
+                this.productsStore.changeRating(this.current, rating);
+            }*/
         },
 };
 </script>

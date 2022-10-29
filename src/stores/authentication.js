@@ -5,6 +5,9 @@ import { auth } from "../firebase/config";
 
 export const useAuthenticationStore = defineStore("authentication", {
     state: () => ({
+
+      auth: auth,
+      userLogged: null,
       userId: null,
       isAdmin: false,
     }),
@@ -83,7 +86,7 @@ export const useAuthenticationStore = defineStore("authentication", {
               if (user.uid == "Be9UXHWFcyREhEDwxyN2qepH0Pp2") {
                   this.isAdmin = true;
               } 
-              
+
             } else {
               console.log("User is not signed in");
             }

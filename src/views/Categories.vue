@@ -6,33 +6,39 @@ export default {
   data() {
     return {
       wines: [],
-     
+      drawWines: [],     
   };
 },
 
   computed: {
     ...mapStores(useWinesStore),
-    allWines() {
+
+    winesGet() {
       return this.winesStore.getWines;
     },
   },
 
-  mounted() {
-    this.winesStore.displayItem();
+ mounted() {
+    //await this.winesStore.displayWine();
     //console.log(this.winesStore.loadWines);
+    //this.drawWines = await this.winesStore.displayWine();
+
+    this.winesStore
+            
+            this.winesStore.displayWine();
   },
 
   methods: {
-    sortBy(event) {
-      let selection = event.target.value;
-      this.winesStore.sortWine(selection);
-    },
-
-    filterBy(event, caller) {
-      let selected = event.target.value;
-      console.log(selected);
-      this.winesStore.filterWine(selected, caller);
-    },
+    sortBy(event){
+                let selection = event.target.value;
+                this.productsStore.sortProducts(selection);
+            },
+ 
+            filterBy(event, caller){
+                let selected = event.target.value;
+                console.log(selected);
+                this.productsStore.filterProducts(selected, caller);
+            },
   },
 };
 </script>
@@ -87,16 +93,18 @@ export default {
     <div class="product">
       <RouterLink
         class="producted"
-        v-for="wine in allWines"
-        :key="wine.Name"
-        :to="`/product/${wine.id}`"
+        v-for="wines in winesGet"
+        :key="wines.name"
+        :to="`/product/${wines.id}`"
       >
-        <img :src="wine.image" alt="wine preview" />
-        <h1>{{ wine.Name }}</h1>
-        <h2>{{ wine.Type }}</h2>
-        <h3>$ {{ wine.Price }}</h3>
+        <img :src="wines.image" alt="wine preview" />
+        <h1>{{ wines.name }}</h1>
+        <h2>{{ wines.type }}</h2>
+        <h3>$ {{ wines.price }}</h3>
       
       </RouterLink>
+
+    
     </div>
   </div>
 </template>
