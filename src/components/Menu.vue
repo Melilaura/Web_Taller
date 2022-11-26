@@ -2,7 +2,18 @@
 import ErrorModal from "./ErrorModal.vue";
 import ErrorModal1 from "./ErrorModal.vue";
 
+import { useAuthenticationStore } from "../stores/authentication";
+import { mapStores } from "pinia";
+import { auth } from "../firebase/config";
+
 export default {
+  computed: {
+    ...mapStores(useAuthenticationStore),
+    isAdmin(){
+        return this.authenticationStore.getIsAdmin();
+    }
+  }, 
+
   data() {
     return {
       showModal: false,
@@ -44,7 +55,7 @@ export default {
       <RouterLink :to="{ name: 'aboutUs' }"
         ><li class="header_buttons_item">About Us</li></RouterLink
       >
-      <RouterLink :to="{ name: 'addProduct' }"
+      <RouterLink :to="{ name: 'addProduct' }" v-if="isAdmin"
         ><li class="header_buttons_item" >Add product</li></RouterLink
       >
     </ul>

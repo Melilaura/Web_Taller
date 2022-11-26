@@ -84,7 +84,7 @@ export const useAuthenticationStore = defineStore("authentication", {
                 this.userLogged = user;
               this.userId = user.uid;this.userLogged = user;
 
-              if (user.uid == "UpjpdFB6ZESOQpwebWslLHMF1312") {
+              if (user.uid == "kv7641m63mhFlFWiQPImCqMftCJ2") {
                   this.isAdmin = true;
                   alert("you are admin")
               } 
@@ -95,23 +95,6 @@ export const useAuthenticationStore = defineStore("authentication", {
         })
         return this.userLogged;
         },
-    
-        async checkIfUserIsAdmin(){
-          onAuthStateChanged(auth, (user) => {
-            if (user) {
-                this.userLogged = user;
-
-                if (user.uid == "UpjpdFB6ZESOQpwebWslLHMF1312") {
-                    this.isAdmin = true;
-                    alert("you are admin")
-                }
-            } else {
-                console.log("No user")
-            }
-        })
-
-        return this.userLogged; 
-    },
 
     getIsAdmin() {
         return this.isAdmin;
