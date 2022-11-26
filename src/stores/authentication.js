@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
-import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "firebase/auth";
-import { auth } from "../firebase/config";
+import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, deleteUser } from "firebase/auth";
+import { auth, db } from "../firebase/config";
+import { deleteDoc, doc} from "firebase/firestore";
 ///// OPTIONS STORE
 
 export const useAuthenticationStore = defineStore("authentication", {
@@ -114,6 +115,20 @@ export const useAuthenticationStore = defineStore("authentication", {
 
     getIsAdmin() {
         return this.isAdmin;
-    }
+    },
+
+    async deleteAccount() {
+      const user = auth.currentUser;
+      await deleteDoc(doc(db, "users", user.uid));
+      console.log(user);
+
+      deleteUser(user).then(() => {
+          alert("Your account has been deleted");
+          location.reload();
+
+      }).catch((error) => {
+          console.log(error);
+      });
+  }
 }
 });

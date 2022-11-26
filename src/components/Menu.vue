@@ -107,6 +107,7 @@ header {
 
     .header_buttons_item {
       list-style: none;
+      font-style:none;
       color: $FontColor;
       width: 100%;
     }
@@ -117,12 +118,16 @@ header {
     flex-direction: row;
     padding-right: 5%;
     margin-left: 20%;
+    align-items: center;
+    align-content: center;
+
   }
 
   .icon {
     //padding-right: 2%;
     margin-left: 10px;
     width: 30px;
+    align-items: center;
   }
 }
 
@@ -133,6 +138,7 @@ header {
     .Logo {
       img {
         width: 40px;
+        margin-right:0%;
       }
     }
 
@@ -154,6 +160,31 @@ header {
 }
 
 @media all and (max-width: 896px) {
-}
+  header{
+    width: 100%;
+  }
+  .Logo {
+      img {
+        width: 20px;
+      }
+    }
+
+    .Menu {
+      font-size: 2px;
+
+      .header_buttons_item {
+        width: 40px;
+      }
+    }
+
+    .Icons {
+      //margin-left: 25%;
+      .icon {
+        width: 25%;
+      }
+    }
+  }
+
+
 </style>
 

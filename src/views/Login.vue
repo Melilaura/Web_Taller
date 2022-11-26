@@ -1,42 +1,46 @@
 <script>
-import {useAuthenticationStore, } from '../stores/authentication'
+import { useAuthenticationStore } from "../stores/authentication";
 import { mapStores } from "pinia";
-import {auth} from "../firebase/config"
+import { auth } from "../firebase/config";
 
-    export default{
-        data() {
-            return {
-                email: '',
-                password: '',
-            }
-        },
-        methods: {
-            SignIn(e) {
-                e.preventDefault()
-                this.authenticationStore.signIn(this.email, this.password)
-            },
-            logOut(e) {
-                e.preventDefault()
-                this.authenticationStore.logOut()
-                alert("Refresh the page :D")
-            }
-        },
-        computed: {
-            ...mapStores(useAuthenticationStore),
-            userIsLogged(){
-                return this.authenticationStore.getUser() !== null
-            }
-        },
-        mounted(){
-            console.log(auth.currentUser)
-        },
-    }
+export default {
+  data() {
+    return {
+      email: "",
+      password: "",
+    };
+  },
+  methods: {
+    SignIn(e) {
+      e.preventDefault();
+      this.authenticationStore.signIn(this.email, this.password);
+    },
+    logOut(e) {
+      e.preventDefault();
+      this.authenticationStore.logOut();
+      alert("Refresh the page :D");
+    },
+
+    deleteAccount(e) {
+      e.preventDefault();
+      this.authenticationStore.deleteAccount();
+    },
+  },
+  computed: {
+    ...mapStores(useAuthenticationStore),
+    userIsLogged() {
+      return this.authenticationStore.getUser() !== null;
+    },
+  },
+  mounted() {
+    console.log(auth.currentUser);
+  },
+};
 </script>
 
 <template>
-
-<section v-if="!userIsLogged">
-  <h1 class="title">LOGIN</h1>
+  <section v-if="!userIsLogged">
+    <h1 class="title">LOGIN</h1>
 
     <form class="form">
       <input
@@ -54,25 +58,18 @@ import {auth} from "../firebase/config"
       <button class="form__submit" @click.prevent="SignIn">Submit</button>
       <br />
 
-
-
       <RouterLink :to="{ name: 'signUp' }"
         >Don't have a user? Sign up now!</RouterLink
       >
       <button @click="logOut">Log Out</button>
     </form>
-
   </section>
 
-    <section v-if="userIsLogged" class="logged">
-      
-        <h1 class="title" >User Logged</h1>
-        <button class="form__submit" @click="logOut">Log out</button>
-    
-    
-   
-   </section>
-
+  <section v-if="userIsLogged" class="logged">
+    <h1 class="title">User Logged</h1>
+    <button class="form__submit" @click="logOut">Log out</button>
+    <button class="form__submit"  @click="deleteAccount" >Delete account</button>
+  </section>
 </template>
 
 <style lang="scss">
@@ -89,18 +86,17 @@ $FontTextTitle: "Playfair Display", serif;
   color: $FontColor;
 }
 
+.logged {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-.logged{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
 .form {
   font-family: $FontTextTitle;
   color: $FontColor;
   justify-content: center;
- 
+
   &__label {
     font-size: 15px;
   }
@@ -187,11 +183,7 @@ $FontTextTitle: "Playfair Display", serif;
       border: 2px solid $mainColor;
       background-color: $mainColor;
     }
-   
   }
-
-
- 
 }
 
 @media all and (max-width: 1180px) {
