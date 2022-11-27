@@ -13,6 +13,8 @@ export default {
         wineType: "",
         image: "",
         wineRating: "",
+				allRatings: 0,
+				totalRating: 0,
       },  
     };
   },

@@ -3,12 +3,10 @@ import { mapStores } from "pinia";
 import { useWinesStore } from "../stores/wines";
 import { useFirestoreStore } from "../stores/firestore";
 import { useAuthenticationStore } from "../stores/authentication";
-
 export default {
   data() {
     return {
       currentWine: {},
-
       edit: false,
       chosenWine: '',
       wineName: "",
@@ -21,51 +19,40 @@ export default {
       image: "",
     };
   },
-
   computed: {
     ...mapStores(useWinesStore, useFirestoreStore, useAuthenticationStore),
-
     getUser() {
       return this.authenticationStore.userId;
     },
-
     userUid() {
       return this.authenticationStore.getUser().uid;
     },
-
     isAdmin() {
       return this.authenticationStore.getIsAdmin();
     },
   },
-
   mounted() {
     this.currentWine = this.winesStore.getWineById(this.$route.params.wineId);
     //console.log(this.getUser);
   },
-
   methods: {
     addToCart() {
       this.winesStore.addProductToCart(this.getUser, this.currentWine);
     },
-
     rateProduct(rating) {
       console.log(rating);
       this.winesStore.changeRating(this.currentWine, rating);
       alert("you have raking");
     },
-
     showEdit(e, wine) {
       e.preventDefault();
       this.edit = true;
       this.chosenWine = wine;
     },
-
     closeEdit() {
       this.edit = false;
     },
-
     async editWine() {
-
       const wine = {
         id: this.currentWine,
         wineName: this.wineName,
@@ -76,19 +63,14 @@ export default {
         wineRating: this.wineRating,
         image: this.image,
       };
-
       await this.firestoreStore.editWine(this.currentWine.id, wine);
       this.edit = false;
     },
-
     onFileSelected(event) {
       const reader = new FileReader();
-
       reader.addEventListener("load", (ev) => {
         this.selectedFile = reader.result;
-
         this.currentWine.image = this.selectedFile;
-
         console.log(this.selectedFile);
       });
       reader.readAsDataURL(event.target.files[0]);
@@ -142,12 +124,13 @@ export default {
         Edit Wine
       </button>
     </div>
+  </div>
 
-    <div class="edit" v-if="edit" id="edit-popup">
+  <div class="edit" v-if="edit" id="edit-popup">
       <h2 class="edit__title">Edit product</h2>
       <button class="edit__close" @click="closeEdit">X</button>
-      <div class="form">
-        <form action="" class="form" @submit.prevent="productUploaded">
+      <div class="newForm">
+        <form action="" class="editForm" @submit.prevent="productUploaded">
           <label for="name" class="form__label">WINE</label>
           <input
             type="text"
@@ -242,17 +225,19 @@ export default {
         @change="onFileSelected"
         required
           />
-        </form>
 
-        <button type="submit" class="form__submit" @click="(e) => editWine()">
-          CHANGE BOOK
+          <button type="submit" class="form__submit" @click="(e) => editWine()">
+          CHANGE WINE
         </button>
         <button class="form__submit form__submit--delete" @click="deleteWine">
-          DELETE BOOK
+          DELETE WINE
         </button>
+        </form>
+
+       
       </div>
     </div>
-  </div>
+
 </template>
 
 <style lang="scss">
@@ -263,12 +248,10 @@ $BackgroundColor: black;
 $FontColor: white;
 $FontText: "Lato", sans-serif;
 $FontTextTitle: "Playfair Display", serif;
-
 .product {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-
   .productImage {
     width: 55%;
     margin: 5%;
@@ -276,82 +259,123 @@ $FontTextTitle: "Playfair Display", serif;
       width: 150%;
     }
   }
-
   .productInfo {
     color: $FontColor;
     margin: 5% 15%;
     h1 {
       font-family: $FontTextTitle;
     }
-
     .text {
       font-family: $FontText;
     }
     .addCart {
       font-family: $FontText;
       font-weight: 20px;
-
       color: $newColor;
       background-color: transparent;
-
       border: 2px solid $newColor;
       border-radius: 10%;
-
       padding: 5px 50px;
       margin-top: 10px;
-
       &:hover {
         font-weight: normal;
         color: $FontColor;
-
         cursor: pointer;
-
         border: 2px solid $newColor;
         background-color: $newColor;
       }
     }
   }
-
   .rating {
     width: 300px;
   }
-
   .rating p {
     text-align: left;
   }
-
   .rating button {
     font-size: 200%;
     cursor: pointer;
   }
-
   input[type="radio"] {
     display: none;
   }
-
   button {
     color: grey;
   }
-
   .clasificacion {
     direction: rtl;
     unicode-bidi: bidi-override;
   }
-
   button:hover,
   button:hover ~ button {
     color: orange;
   }
-
   input[type="radio"]:checked ~ button {
     color: orange;
   }
 }
 
+
+.edit { 
+    background-color: $BackgroundColor;    
+    font-family: $FontText;
+    color: $FontColor;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 10px;
+
+    position:absolute;
+  top:20%;
+  left:50%;
+  
+  transform:translate(-50%,-50%);
+
+    .title {
+  margin: 45px 30%;
+  font-family: $FontTextTitle;
+  color: $FontColor;
+
+
+
+  
+}
+
+.edit__close {
+    font-family: "Outfit", sans-serif;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 20px;
+      height: 20px;
+      color: $mainColor;
+      font-weight: 700;
+      font-size: 1.3em;
+      border: none;
+      background-color: transparent;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+}
 #edit-popup {
   -webkit-box-shadow:  0px 0px 0px 9999px rgba(0, 0, 0, 0.7);
   box-shadow:  0px 0px 0px 9999px rgba(0, 0, 0, 0.7);
 }
+
+.newForm{
+  height:40px;
+  background-color:black;
+
+}
+
+
+
+
+
 
 @media all and (max-width: 1180px) {
   .productImage {
