@@ -11,11 +11,8 @@ export default {
         winePrice: "",
         wineDescription: "",
         wineType: "",
-        wineType: "",
         image: "",
         wineRating: "",
-				allRatings: 0,
-				totalRating: 0,
       },  
     };
   },

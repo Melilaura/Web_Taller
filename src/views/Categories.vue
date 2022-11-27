@@ -1,45 +1,58 @@
 <script>
 import { mapStores } from "pinia";
 import { useWinesStore } from "../stores/wines";
+import { useFirestoreStore } from "../stores/firestore";
+import { useAuthenticationStore } from "../stores/authentication";
 
 export default {
   data() {
     return {
       wines: [],
-      drawWines: [],     
-  };
-},
+      drawWines: [],
+
+     
+    };
+  },
 
   computed: {
-    ...mapStores(useWinesStore),
+    ...mapStores(useWinesStore, useFirestoreStore, useAuthenticationStore),
 
     winesGet() {
       return this.winesStore.getWines;
     },
+
+    userUid() {
+      return this.authenticationStore.getUser().uid;
+    },
+
+    isAdmin() {
+      return this.authenticationStore.getIsAdmin();
+    },
   },
 
- mounted() {
+  mounted() {
     //await this.winesStore.displayWine();
     //console.log(this.winesStore.loadWines);
     //this.drawWines = await this.winesStore.displayWine();
 
-    this.winesStore
-            
-            this.winesStore.displayWine();
+    this.winesStore;
+
+    this.winesStore.displayWine();
   },
 
   methods: {
-    sortBy(event){
-                let selection = event.target.value;
-                this.winesStore.sortWine(selection);
-            },
- 
-            filterBy(event, caller){
-                let selected = event.target.value;
-                console.log(selected);
-                this.winesStore.filterWine(selected, caller);
-            },
-            
+    sortBy(event) {
+      let selection = event.target.value;
+      this.winesStore.sortWine(selection);
+    },
+
+    filterBy(event, caller) {
+      let selected = event.target.value;
+      console.log(selected);
+      this.winesStore.filterWine(selected, caller);
+    },
+
+    
   },
 };
 </script>
@@ -50,7 +63,7 @@ export default {
   </div>
 
   <div class="productFilter">
-    <select class="productFilterSelect" @change="filterBy($event,'A')">
+    <select class="productFilterSelect" @change="filterBy($event, 'A')">
       <option value="noFilter" disabled selected>Type of Products</option>
       <option value="noFilter">Any Type</option>
       <option value="0">Red wine</option>
@@ -59,7 +72,7 @@ export default {
       <option value="3">Sparkling wine</option>
       <option value="4">Miscellaneous wine</option>
     </select>
-    <select class="productFilterSelect" @change=" filterBy($event, 'B')">
+    <select class="productFilterSelect" @change="filterBy($event, 'B')">
       <option value="noFilter" disabled selected>Price</option>
       <option value="noFilter">Any Price</option>
       <option value="0">Lower than 50$</option>
@@ -102,10 +115,7 @@ export default {
         <h1>{{ wines.name }}</h1>
         <h2>{{ wines.type }}</h2>
         <h3>$ {{ wines.price }}</h3>
-      
       </RouterLink>
-
-    
     </div>
   </div>
 </template>

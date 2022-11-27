@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
-import { db } from "../firebase/firebase"
+import { db } from "../firebase/config"
 
-import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, setDoc, deleteDoc } from "firebase/firestore";
 
 export const useFirestoreStore = defineStore("firestore", {
     state: () => ({
@@ -51,7 +51,7 @@ export const useFirestoreStore = defineStore("firestore", {
             setDoc(userRef, { rating: ratingValue }, {merge: true});
         },
 
-        addBookRatingList(id, ratingValue){
+        addWineRatingList(id, ratingValue){
             const bookRef = doc(db, 'books', id);
             setDoc(bookRef, { ratingList: ratingValue }, {merge: true});
         },
@@ -69,17 +69,25 @@ export const useFirestoreStore = defineStore("firestore", {
             return result.cart;
         },
 
-        changeBookRating(book) {
-            let sum = 0;
-            let list = book.ratingList;
-            list.push(book.rating);
+        async editWine(id, wine) {
+            try {
+                await setDoc(doc(db, "wine", id), wine);
+                alert("The Wine has been edited successfully");
+            } catch (error) {
+                console.log(error);
+            }
+        },
 
-            list.forEach(function(num) { sum += num });
+        async deleteWine(id) {
+            try {
+                await deleteDoc(doc(db, "wine", id));
+                alert("The wine has been deleted successfully");
+                alert("Go back to the Wine Store");
+            } catch (error) {
+                console.log(error);
+            }
+        } 
 
-            let average = sum/list.length;
-            
-            const bookRef = doc(db, 'books', book.id);
-            setDoc(bookRef, { rating: average }, {merge: true});
-        }
+       
     }
 });
