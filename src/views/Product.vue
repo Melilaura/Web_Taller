@@ -39,10 +39,14 @@ export default {
     addToCart() {
       this.winesStore.addProductToCart(this.getUser, this.currentWine);
     },
-    rateProduct(rating) {
+    async rateProduct(rating) {
       console.log(rating);
       this.winesStore.changeRating(this.currentWine, rating);
+
+      
       alert("you have raking");
+
+
     },
     showEdit(e, wine) {
       e.preventDefault();
@@ -97,8 +101,7 @@ export default {
       <h3 class="text">${{ currentWine.price }}</h3>
       <h4 class="text">{{ currentWine.description }}</h4>
 
-      <h3 class="text">Rating:</h3>
-      <h3 class="text">Current rating: {{ currentWine.wineRating }}</h3>
+      <h3 class="text">Rating: 0 {{ currentWine.wineRating }}</h3>
       <div class="rating">
         <p class="clasificacion">
           <button id="radio1" type="radio" name="estrellas" value="5" /><!--

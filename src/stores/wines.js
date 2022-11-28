@@ -324,12 +324,12 @@ export const useWinesStore = defineStore("wines", {
                       
                           console.log(wineDoc.data().wineRating + newValue);
             
-                          const newRating = (wineDoc.data().allRatings/wineDoc.data().totalRatings);
+                          const newRating = (wineDoc.data().wineRating + newValue);
                           transaction.update(wineDocRef, { wineRating: newRating });
                         });
-                        console.log("Transaction successfully committed!");
+                        console.log("Rating successfully committed!");
                       } catch (e) {
-                        console.log("Transaction failed: ", e);
+                        console.log("Rating failed: ", e);
                       }
             
               }
