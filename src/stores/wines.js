@@ -68,7 +68,6 @@ export const useWinesStore = defineStore("wines", {
     
           console.log(this.wines);
           
-        
           let wineValue;
           let wine;
     

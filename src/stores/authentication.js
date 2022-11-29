@@ -20,10 +20,13 @@ export const useAuthenticationStore = defineStore("authentication", {
             signInWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
                     // Signed in 
+                  
                     console.log("Logged In")
             alert("Logged in Succesfully")
                 })
                 .catch((error) => {
+
+                 
                     const errorCode = error.code;
                     const errorMessage = error.message;
                     alert(errorMessage);

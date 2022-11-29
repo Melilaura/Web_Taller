@@ -56,13 +56,11 @@ export default {
         ><li class="header_buttons_item">About Us</li></RouterLink
       >
       <RouterLink :to="{ name: 'addProduct' }" v-if="isAdmin"
-        ><li class="header_buttons_item" >Add product</li></RouterLink
+        ><li class="header_buttons_item" id="add product" >Add product</li></RouterLink
       >
     </ul>
 
     <div class="Icons">
-     
-
       <RouterLink :to="{ name: 'cart' }"
       class="icon" >
           <img class="icon" src="/goOut.png" alt="" />
@@ -72,7 +70,7 @@ export default {
       class="icon" >
           <img class="icon" src="/userIcon.png" alt="" />
       </RouterLink>
-
+      
     </div>
   </header>
 
