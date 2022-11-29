@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-
+import Error404 from '../views/404Error.vue'
 /*import Home from '../views/Home.vue'
 import Categories from '../views/Categories.vue'
 import AddProduct from '../views/AddProduct.vue'
@@ -58,6 +58,11 @@ const router = createRouter({
       name: 'cart',
       //component: Login
       component: () => import('../views/Cart.vue')
+    },
+
+    {
+      path: '/:pathMatch(.*)*',
+      component: Error404,
     },
 
   ]

@@ -5,8 +5,8 @@ import { useWinesStore } from "../wines";
 describe("Wines Store", () => {
     vi.mock("firebase/storage", () => {
 
-        const getStorage = vitest.fn(() => Promise.resolve({ userLogged: "1234" }));
-        const ref = vitest.fn(() => Promise.resolve({ userLogged: "1234" }));
+        const getStorage = vitest.fn(() => Promise.resolve(undefined));
+        const ref = vitest.fn(() => Promise.resolve(undefined));
         const uploadBytes = vitest.fn(() => Promise.resolve(undefined));
 
         return {
